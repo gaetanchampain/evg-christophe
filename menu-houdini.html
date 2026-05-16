@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1A1814">
+<title>Menu Houdini — EVG Christophe</title>
+<meta name="description" content="Choisis ton menu pour le dîner au resto Houdini à Bratislava — EVG Christophe, 21-25 mai 2026.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Menu Houdini · EVG Christophe">
+<meta property="og:description" content="Choisis ton entrée, plat et dessert pour le dîner à Bratislava.">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F5EFE0;
+  --bg-card: #FBF7EC;
+  --bg-deep: #E8DFC8;
+  --ink: #1A1814;
+  --ink-soft: #5C544A;
+  --ink-mute: #8B8273;
+  --gold: #B8985A;
+  --gold-deep: #8E7340;
+  --line: #D9CFB4;
+  --accent: #6B2C2C;
+  --green: #6B9F4A;
+  --shadow: 0 1px 0 rgba(26,24,20,.04), 0 4px 14px -6px rgba(26,24,20,.10);
+  --shadow-lg: 0 2px 0 rgba(26,24,20,.04), 0 18px 40px -16px rgba(26,24,20,.20);
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Karla', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  padding-bottom: 100px;
+  -webkit-font-smoothing: antialiased;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(184,152,90,.08) 1px, transparent 0);
+  background-size: 22px 22px;
+  pointer-events: none;
+  z-index: 0;
+}
+.wrap { max-width: 600px; margin: 0 auto; padding: 28px 18px 0; position: relative; z-index: 1; }
+
+.lang-switch {
+  display: inline-flex;
+  background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: 100px; padding: 3px;
+  margin-bottom: 8px;
+  box-shadow: var(--shadow);
+}
+.lang-btn {
+  border: none; background: transparent;
+  padding: 6px 14px; border-radius: 100px;
+  font-family: 'Karla', sans-serif; font-weight: 600;
+  font-size: 12px; letter-spacing: .08em;
+  color: var(--ink-mute);
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.lang-btn.active {
+  background: var(--ink); color: var(--bg);
+}
+.lang-btn:not(.active):active { transform: scale(.96); }
+
+header { text-align: center; padding: 12px 8px 24px; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
+.eyebrow { font-size: 11px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; margin-bottom: 14px; }
+.logo-mark { display: inline-flex; align-items: center; justify-content: center; width: 54px; height: 54px; border: 1.5px solid var(--gold); border-radius: 50%; margin-bottom: 12px; }
+.logo-mark span { font-family: 'Fraunces', serif; font-weight: 600; font-size: 26px; color: var(--gold-deep); line-height: 1; padding-top: 2px; }
+h1 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 38px; line-height: 1.05; margin: 0 0 8px; letter-spacing: -.01em; font-variation-settings: "opsz" 144; }
+h1 em { font-style: italic; color: var(--gold-deep); font-weight: 400; }
+.sub { font-size: 13px; color: var(--ink-soft); letter-spacing: .04em; }
+.sub .dot { color: var(--gold); margin: 0 8px; }
+
+.name-block {
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: 16px;
+  padding: 16px 16px 14px; margin-bottom: 18px;
+  box-shadow: var(--shadow);
+}
+.name-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold-deep); font-weight: 600; margin-bottom: 8px; }
+.name-input {
+  width: 100%; border: none; background: transparent;
+  font-family: 'Fraunces', serif; font-weight: 500; font-size: 26px;
+  color: var(--ink); outline: none;
+  font-variation-settings: "opsz" 36; padding: 0;
+}
+.name-input::placeholder { color: var(--ink-mute); font-style: italic; font-weight: 400; }
+.name-hint { font-size: 12px; color: var(--ink-mute); margin-top: 6px; min-height: 18px; }
+.name-hint.edit { color: var(--gold-deep); }
+.name-hint.edit::before { content: '✎ '; }
+.name-hint.error { color: var(--accent); font-weight: 600; }
+.name-hint.error::before { content: '⚠ '; }
+.name-block.pulse {
+  animation: pulse-error .6s ease;
+}
+@keyframes pulse-error {
+  0%, 100% { box-shadow: var(--shadow); border-color: var(--line); }
+  50% { box-shadow: 0 0 0 4px rgba(107,44,44,.15); border-color: var(--accent); }
+}
+
+.legend {
+  display: flex; flex-direction: column; gap: 8px;
+  background: linear-gradient(135deg, rgba(107,159,74,.10), rgba(184,152,90,.06));
+  border: 1px solid rgba(107,159,74,.30);
+  border-radius: 14px;
+  padding: 12px 14px;
+  margin-bottom: 18px;
+}
+.legend-row { display: flex; align-items: center; gap: 10px; }
+.legend-marker { flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+.legend-marker.green {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 0 3px rgba(107,159,74,.18);
+}
+.legend-marker.slovak {
+  width: 24px; height: 16px; border-radius: 2px;
+  background: linear-gradient(to bottom, #fff 0 33.3%, #0B4EA2 33.3% 66.6%, #EE1C25 66.6% 100%);
+  box-shadow: 0 0 0 1px rgba(11,78,162,.20);
+}
+.legend-label { font-size: 13px; color: var(--ink-soft); }
+.legend-label strong {
+  font-family: 'Fraunces', serif; font-weight: 500;
+  color: var(--ink);
+  font-variation-settings: "opsz" 14;
+}
+
+.counter-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--ink); color: var(--bg);
+  padding: 6px 12px 6px 8px; border-radius: 100px;
+  font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+}
+.counter-pill .dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; }
+.counter-pill.zero { background: var(--bg-deep); color: var(--ink-mute); }
+.counter-pill.zero .dot { background: var(--ink-mute); }
+
+.cat-title { font-family: 'Fraunces', serif; font-size: 13px; letter-spacing: .22em; text-transform: uppercase; color: var(--ink-mute); font-weight: 500; margin: 32px 0 14px; display: flex; align-items: center; gap: 12px; }
+.cat-title::before, .cat-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+.dish {
+  display: flex; gap: 12px;
+  background: var(--bg-card); border: 1px solid var(--line);
+  border-radius: 14px; padding: 14px;
+  cursor: pointer; margin-bottom: 8px;
+  transition: all .15s ease;
+  position: relative;
+  user-select: none; -webkit-user-select: none;
+}
+.dish:active { transform: scale(.99); }
+.dish.selected {
+  border-color: var(--gold);
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(184,152,90,.15);
+}
+.menu-locked .dish {
+  opacity: .5;
+  cursor: pointer;
+}
+.menu-locked .dish:active { transform: none; }
+.menu-locked .dish-check {
+  background: var(--bg-deep);
+  border-color: var(--bg-deep);
+}
+.dish-check {
+  width: 22px; height: 22px; border-radius: 6px;
+  border: 1.5px solid var(--line);
+  background: var(--bg);
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .15s ease;
+  margin-top: 1px;
+}
+.dish.selected .dish-check {
+  background: var(--gold); border-color: var(--gold);
+}
+.dish-check svg { width: 14px; height: 14px; color: #fff; opacity: 0; transition: opacity .15s ease; }
+.dish.selected .dish-check svg { opacity: 1; }
+.dish-content { flex: 1; min-width: 0; }
+.dish-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+.dish-name { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; color: var(--ink); line-height: 1.2; font-variation-settings: "opsz" 18; }
+.dish-price { font-family: 'Fraunces', serif; font-size: 14px; font-variation-settings: "opsz" 14; color: var(--gold-deep); font-weight: 500; flex-shrink: 0; }
+.dish-desc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.45; }
+.dish-meta { font-size: 11px; color: var(--ink-mute); margin-top: 4px; letter-spacing: .04em; }
+.dish-veg {
+  display: inline-block; width: 9px; height: 9px; border-radius: 50%;
+  background: var(--green); margin-right: 7px; vertical-align: middle;
+  box-shadow: 0 0 0 3px rgba(107,159,74,.15);
+}
+.dish-specialty-tag {
+  display: inline-block;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+  font-size: 11.5px; color: var(--green);
+  margin: 4px 0 2px;
+  letter-spacing: .02em;
+  font-variation-settings: "opsz" 14;
+}
+.dish-specialty-tag::before { content: '★ '; font-style: normal; }
+.dish-slovak-flag {
+  display: inline-block; vertical-align: middle;
+  margin-right: 7px;
+  width: 16px; height: 11px; border-radius: 2px;
+  background:
+    linear-gradient(to bottom, #fff 0 33.3%, #0B4EA2 33.3% 66.6%, #EE1C25 66.6% 100%);
+  box-shadow: 0 0 0 1px rgba(11,78,162,.20);
+  position: relative; top: -1px;
+}
+.dish-slovak-tag {
+  display: inline-block;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+  font-size: 11.5px; color: #0B4EA2;
+  margin: 4px 0 2px;
+  letter-spacing: .02em;
+  font-variation-settings: "opsz" 14;
+}
+.dish-slovak-tag::before { content: '◈ '; font-style: normal; }
+
+.bottombar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, var(--bg) 50%, rgba(245,239,224,.85) 85%, rgba(245,239,224,0));
+  padding: 18px 18px calc(16px + env(safe-area-inset-bottom));
+  z-index: 50;
+}
+.bottombar-inner { max-width: 600px; margin: 0 auto; display: flex; gap: 8px; }
+.btn-primary, .btn-secondary { height: 54px; border-radius: 14px; font-family: 'Karla', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; transition: all .15s ease; border: none; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.btn-primary { flex: 1; background: var(--ink); color: var(--bg); box-shadow: var(--shadow-lg); }
+.btn-primary:disabled { background: var(--bg-deep); color: var(--ink-mute); box-shadow: none; cursor: not-allowed; }
+.btn-primary:not(:disabled):active { transform: scale(.98); }
+.btn-secondary { background: var(--bg-card); color: var(--ink); border: 1px solid var(--line); flex: 0 0 54px; }
+.btn-secondary svg { width: 20px; height: 20px; }
+.badge-count-inline { background: var(--gold); color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 100px; font-weight: 700; letter-spacing: .04em; }
+
+.synth-section { margin-top: 36px; padding-top: 26px; border-top: 1px solid var(--line); }
+.synth-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+.synth-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 500; font-variation-settings: "opsz" 24; }
+.synth-title em { font-style: italic; color: var(--gold-deep); font-weight: 400; }
+.synth-list { display: flex; flex-direction: column; gap: 8px; }
+.synth-empty {
+  background: var(--bg-card); border: 1px dashed var(--line); border-radius: 14px;
+  padding: 28px 20px; text-align: center;
+  color: var(--ink-mute); font-style: italic; font-family: 'Fraunces', serif;
+  font-size: 15px;
+}
+.synth-card {
+  background: var(--bg-card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 12px 14px;
+}
+.synth-card-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.synth-card-name { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 500; font-variation-settings: "opsz" 18; display: flex; align-items: center; gap: 8px; }
+.synth-card-check { color: var(--green); }
+.synth-card-actions { display: flex; gap: 4px; }
+.synth-card-actions button { background: none; border: none; padding: 6px; cursor: pointer; color: var(--ink-mute); border-radius: 6px; }
+.synth-card-actions button:hover { color: var(--ink); background: var(--bg); }
+.synth-card-actions svg { width: 14px; height: 14px; }
+.synth-card-list { font-size: 13px; color: var(--ink-soft); line-height: 1.5; }
+.synth-card-tag { display: inline-block; background: var(--bg); padding: 2px 8px; border-radius: 6px; margin: 2px 4px 2px 0; font-size: 12px; }
+.synth-card-tag.cat-s { color: var(--gold-deep); }
+.synth-card-tag.cat-m { color: var(--ink); font-weight: 500; }
+.synth-card-tag.cat-d { color: var(--accent); }
+.synth-card-total { font-size: 11px; color: var(--ink-mute); margin-top: 6px; letter-spacing: .04em; }
+
+.sheet-backdrop { position: fixed; inset: 0; background: rgba(26,24,20,.55); z-index: 100; opacity: 0; pointer-events: none; transition: opacity .25s ease; backdrop-filter: blur(2px); -webkit-backdrop-filter: blur(2px); }
+.sheet-backdrop.open { opacity: 1; pointer-events: auto; }
+.sheet {
+  position: fixed; left: 0; right: 0; bottom: 0;
+  background: var(--bg);
+  border-radius: 22px 22px 0 0;
+  z-index: 101;
+  transform: translateY(100%);
+  transition: transform .3s cubic-bezier(.32,.72,.32,1);
+  max-height: 88vh;
+  display: flex; flex-direction: column;
+  box-shadow: 0 -10px 40px -10px rgba(0,0,0,.25);
+}
+.sheet.open { transform: translateY(0); }
+.sheet-grip { width: 38px; height: 4px; background: var(--line); border-radius: 4px; margin: 10px auto 0; flex-shrink: 0; }
+.sheet-head { padding: 14px 20px 14px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-shrink: 0; }
+.sheet-title { font-family: 'Fraunces', serif; font-size: 19px; font-weight: 500; font-variation-settings: "opsz" 24; }
+.sheet-title em { font-style: italic; color: var(--gold-deep); font-weight: 400; }
+.sheet-close { width: 32px; height: 32px; border-radius: 50%; background: var(--bg-deep); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--ink); flex-shrink: 0; }
+.sheet-body { overflow-y: auto; padding: 12px 18px 28px; -webkit-overflow-scrolling: touch; }
+
+.recap-cat { font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: var(--gold-deep); letter-spacing: .04em; margin: 8px 0 8px; font-variation-settings: "opsz" 14; }
+.recap-item { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; margin-bottom: 6px; }
+.recap-dish-row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 4px; }
+.recap-dish-name { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 500; }
+.recap-qty { background: var(--ink); color: var(--bg); font-size: 11px; padding: 2px 8px; border-radius: 8px; font-weight: 700; letter-spacing: .04em; }
+.recap-guests { font-size: 12px; color: var(--ink-soft); line-height: 1.45; }
+.recap-total { background: var(--ink); color: var(--bg); border-radius: 14px; padding: 14px 18px; margin: 18px 0 14px; display: flex; align-items: baseline; justify-content: space-between; }
+.recap-total-label { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }
+.recap-total-value { font-family: 'Fraunces', serif; font-size: 24px; font-weight: 500; font-variation-settings: "opsz" 24; }
+.recap-empty { text-align: center; color: var(--ink-mute); padding: 40px 20px; font-style: italic; font-family: 'Fraunces', serif; }
+
+.server-section {
+  background: var(--ink); color: var(--bg);
+  border-radius: 16px; padding: 16px;
+  margin-bottom: 20px;
+}
+.server-section-head {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px; padding-bottom: 12px;
+  border-bottom: 1px solid rgba(245,239,224,.18);
+}
+.server-section-title {
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
+  font-size: 16px; font-variation-settings: "opsz" 18;
+}
+.server-section-title::before { content: '🍽 '; font-style: normal; margin-right: 4px; }
+.server-copy-btn {
+  background: var(--bg); color: var(--ink);
+  border: none; border-radius: 8px;
+  padding: 6px 10px; font-size: 11px; font-weight: 700;
+  letter-spacing: .08em; text-transform: uppercase;
+  cursor: pointer; font-family: 'Karla', sans-serif;
+}
+.server-copy-btn:active { transform: scale(.96); }
+.server-cat {
+  font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(245,239,224,.55); font-weight: 600;
+  margin: 12px 0 6px; padding-top: 4px;
+}
+.server-cat:first-child { margin-top: 0; padding-top: 0; }
+.server-row {
+  display: flex; align-items: baseline; justify-content: space-between;
+  gap: 12px; padding: 7px 0;
+  border-bottom: 1px dotted rgba(245,239,224,.15);
+}
+.server-row:last-child { border-bottom: none; }
+.server-dish {
+  font-family: 'Fraunces', serif; font-weight: 500;
+  font-size: 15.5px; line-height: 1.2; flex: 1;
+  font-variation-settings: "opsz" 16;
+}
+.server-qty {
+  font-family: 'Fraunces', serif; font-weight: 500;
+  font-size: 22px; color: var(--gold);
+  font-variation-settings: "opsz" 24;
+  flex-shrink: 0; min-width: 38px; text-align: right;
+}
+
+.recap-section-divider {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 12px; color: var(--ink-mute);
+  letter-spacing: .12em; text-transform: uppercase; font-weight: 500;
+  margin: 4px 0 14px; padding-top: 8px;
+  border-top: 1px solid var(--line);
+  display: flex; align-items: center; gap: 10px;
+}
+.recap-section-divider::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+.danger-zone { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.danger-btn { width: 100%; padding: 12px; border: 1px solid var(--line); background: transparent; border-radius: 10px; cursor: pointer; font-size: 12px; color: var(--ink-mute); letter-spacing: .12em; text-transform: uppercase; font-weight: 600; font-family: inherit; }
+.danger-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+.toast { position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%) translateY(20px); background: var(--ink); color: var(--bg); padding: 10px 18px; border-radius: 100px; font-size: 13px; font-weight: 500; opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 200; }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+footer { text-align: center; padding: 30px 0 0; font-size: 11px; color: var(--ink-mute); letter-spacing: .08em; }
+footer .sep { color: var(--gold); margin: 0 8px; }
+
+.sync-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-mute); font-weight: 600;
+  padding: 4px 10px; border-radius: 100px;
+  background: var(--bg-card); border: 1px solid var(--line);
+  margin-bottom: 14px;
+}
+.sync-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ink-mute); flex-shrink: 0; }
+.sync-status.ok { color: var(--green); border-color: rgba(107,159,74,.30); background: rgba(107,159,74,.06); }
+.sync-status.ok .sync-dot { background: var(--green); box-shadow: 0 0 0 3px rgba(107,159,74,.20); animation: pulse-sync 2s ease-in-out infinite; }
+.sync-status.err { color: var(--accent); border-color: rgba(107,44,44,.30); }
+.sync-status.err .sync-dot { background: var(--accent); }
+@keyframes pulse-sync { 0%,100% { box-shadow: 0 0 0 3px rgba(107,159,74,.20); } 50% { box-shadow: 0 0 0 6px rgba(107,159,74,0); } }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.fade-up { animation: fadeUp .3s ease; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="lang-switch">
+    <button class="lang-btn" data-lang="fr">FR</button>
+    <button class="lang-btn" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="sk">SK</button>
+  </div>
+
+  <header>
+    <div class="logo-mark"><span>H</span></div>
+    <div class="eyebrow" id="t-eyebrow">Houdini · Wine & Dine</div>
+    <h1><span id="t-title-main">Menu</span> <em id="t-title-em">à la carte</em></h1>
+    <div class="sub"><span id="t-sub">EVG Christophe</span><span class="dot">◆</span><span id="t-location">Bratislava</span></div>
+  </header>
+
+  <div class="legend">
+    <div class="legend-row">
+      <div class="legend-marker slovak"></div>
+      <div class="legend-label"><strong id="t-legend-strong">Spécialité locale</strong> · <span id="t-legend-text">plat typique de la cuisine slovaque</span></div>
+    </div>
+  </div>
+
+  <div class="name-block">
+    <div class="name-label" id="t-name-label">Ton prénom</div>
+    <input class="name-input" id="nameInput" placeholder="Entre ton prénom…" maxlength="30" autocomplete="off">
+    <div class="name-hint" id="nameHint"></div>
+  </div>
+
+  <div id="menuRoot"></div>
+
+  <section class="synth-section">
+    <div class="sync-status" id="syncStatus">
+      <span class="sync-dot"></span><span id="syncLabel">Connexion…</span>
+    </div>
+    <div class="synth-head">
+      <div class="synth-title"><span id="t-synth-main">Qui a</span> <em id="t-synth-em">commandé</em></div>
+      <div class="counter-pill zero" id="synthCounter">
+        <span class="dot"></span><span id="synthCount">0 personne</span>
+      </div>
+    </div>
+    <div class="synth-list" id="synthList"></div>
+  </section>
+
+  <footer id="t-footer">
+    Houdini Bratislava<span class="sep">◆</span>21–25 mai 2026
+  </footer>
+</div>
+
+<div class="bottombar">
+  <div class="bottombar-inner">
+    <button class="btn-primary" id="validateBtn" disabled>
+      <span id="validateLabel">Valider ma commande</span>
+      <span class="badge-count-inline" id="validateCount" style="display:none">0</span>
+    </button>
+    <button class="btn-secondary" id="recapBtn" title="Voir le récap complet">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</div>
+
+<div class="sheet-backdrop" id="recapBackdrop"></div>
+<div class="sheet" id="recapSheet">
+  <div class="sheet-grip"></div>
+  <div class="sheet-head">
+    <div class="sheet-title"><span id="t-recap-main">Récap</span> <em id="t-recap-em">commande</em></div>
+    <button class="sheet-close" data-close>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="sheet-body" id="recapBody"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script type="module">
+// ============================================================================
+// ⚠️  FIREBASE CONFIG — REMPLIR AVEC TES CREDENTIALS
+// ============================================================================
+const firebaseConfig = {
+  apiKey: "AIzaSyBPywU9ENXYyLufwLafENPcmnC68n87nD4",
+  authDomain: "houdini-evg.firebaseapp.com",
+  projectId: "houdini-evg",
+  storageBucket: "houdini-evg.firebasestorage.app",
+  messagingSenderId: "822843036566",
+  appId: "1:822843036566:web:a7f3e3dac9a77f174703b7"
+};
+// ============================================================================
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+import {
+  getFirestore, collection, doc,
+  setDoc, deleteDoc, onSnapshot,
+  writeBatch, getDocs
+} from "https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js";
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const COLLECTION = "evg-christophe-orders";
+const ordersCol = collection(db, COLLECTION);
+const MENU = {
+  starter: [
+    { id: 's1', price: 19.50, weight: "80 g",
+      fr: { name: "Ravioli au homard", desc: "Fenouil, curcuma, pamplemousse, piment, oseille" },
+      en: { name: "Lobster ravioli", desc: "Fennel, turmeric, grapefruit, chilli, sorrel" },
+      sk: { name: "Ravioly z homára", desc: "Fenikel, kurkuma, grapefruit, čili, šťaveľ" } },
+    { id: 's2', price: 16.00, weight: "80 g",
+      fr: { name: "Émincé de veau, sauce thon", desc: "Câpres, radis, roquette, frisée, feuilles de betterave, mayonnaise au thon" },
+      en: { name: "Veal slices with tuna sauce", desc: "Capers, radish, rocket, frisée, beetroot leaves, tuna mayonnaise" },
+      sk: { name: "Teľacie plátky", desc: "Kapary, reďkovka, rukola, šalát frisée, cviklové listy, tuniaková majonéza" } },
+    { id: 's3', price: 14.50, weight: "150 g",
+      fr: { name: "Salade & billes de mozzarella aux amandes", desc: "Lollo rosso, romaine, grenade, groseille à maquereau épicée, fils de piment" },
+      en: { name: "Salad with almond-crusted mozzarella balls", desc: "Lollo rosso, romaine lettuce, pomegranate, spicy gooseberry, chilli threads" },
+      sk: { name: "Šalát s guľkami mozzarelly v mandľovej kruste", desc: "Šalát lollo rosso, rímsky šalát, granátové jablko, pikantný egreš, čili vlákno" } },
+    { id: 's4', price: 14.50, weight: "150 g",
+      fr: { name: "Salade d'asperges vegan", desc: "Courgette, pak choi, crème d'avocat, sésame noir, vinaigrette citron vert-chicorée" },
+      en: { name: "Vegan asparagus salad", desc: "Zucchini, pak choi, avocado cream, black sesame, lime-chicory vinaigrette" },
+      sk: { name: "Vegánsky špargľový šalát", desc: "Cukina, pak-choi, avokádový krém, čierny sezam, limetkovo-čakanková vinaigrette" } },
+    { id: 's5', price: 18.50, weight: "150 g",
+      fr: { name: "Plateau de fromages", desc: "Parmesan, brie, gorgonzola, taleggio, pecorino, noix de pécan, confiture d'épicéa" },
+      en: { name: "Cheese platter", desc: "Parmesan, brie, gorgonzola, taleggio, pecorino, pecans, spruce shoot jam" },
+      sk: { name: "Syrový tanier", desc: "Syr parmezán, brie, gorgonzola, taleggio, pecorino, pekanové orechy, džem zo smrekových výhonkov" } },
+    { id: 's6', price: 18.50, weight: "150 g",
+      fr: { name: "Plateau de charcuterie", desc: "Prosciutto, bresaola, coppa, olives, tomates séchées" },
+      en: { name: "Ham platter", desc: "Prosciutto, bresaola, coppa, olives, sun-dried tomatoes" },
+      sk: { name: "Šunkový tanier", desc: "Prosciutto, bresaola, coppa, olivy, sušené paradajky" } },
+    { id: 's7', price: 9.00, weight: "0,22 l",
+      fr: { name: "Crème de salsifis noirs", desc: "Crevettes fumées, citronnelle, huile de persil, pousses de pois" },
+      en: { name: "Black salsify root cream soup", desc: "Smoked shrimps, lemongrass, parsley oil, pea shoots" },
+      sk: { name: "Krém z čierneho koreňa", desc: "Zaúdené krevety, citrónová tráva, petržlenový olej, hráškové výhonky" } },
+    { id: 's8', slovak: true, price: 9.00, weight: "0,22 l",
+      fr: { name: "Bouillon de bœuf", desc: "Muffin au foie de veau, carottes, livèche, pâtes à l'œuf maison" },
+      en: { name: "Beef broth", desc: "Veal liver muffin, carrots, lovage, homemade egg barley pasta" },
+      sk: { name: "Hovädzí vývar", desc: "Muffin z teľacej pečene, mrkva, ligurček, domáca tarhoňa" } }
+  ],
+  main: [
+    { id: 'm1', price: 18.50, weight: "300 g",
+      fr: { name: "Risotto aux petits pois", desc: "Épinards, noisettes, pecorino, radis rouge, pousses de pois" },
+      en: { name: "Pea risotto", desc: "Spinach, hazelnuts, pecorino, red radish, pea shoots" },
+      sk: { name: "Hráškové rizoto", desc: "Špenát, lieskovce, pecorino, červená reďkovka, hráškové výhonky" } },
+    { id: 'm2', price: 23.00, weight: "300 g",
+      fr: { name: "Pâtes trofie", desc: "Morilles, shimeji, pois gourmands, blettes, Grana Padano, pignons" },
+      en: { name: "Trofie pasta", desc: "Morels, shimeji mushrooms, sugar snap peas, chard, Grana Padano, pine nuts" },
+      sk: { name: "Cestoviny trofie", desc: "Smrčky, hríbiky shimeji, hrachové lusky, mangold, syr Grana Padano, píniové orechy" } },
+    { id: 'm3', slovak: true, price: 19.50, weight: "300 g",
+      fr: { name: "Pierogi à la bryndza", desc: "Fromage de brebis slovaque, espuma de crème fraîche, chips de bacon, groseilles, ciboulette" },
+      en: { name: "Pierogi with Slovak bryndza sheep cheese", desc: "Sour cream espuma, bacon chips, redcurrants, chives" },
+      sk: { name: "Bryndzové pirohy", desc: "Espuma z kyslej smotany, slaninový čips, ríbezle, pažítka" } },
+    { id: 'm4', price: 34.00, weight: "300 g",
+      fr: { name: "Saumon Hiddenfjord au four", desc: "Brocoli sauvage, chou-fleur au safran, mini-carottes, capucine, sauce yuzu, purée brocoli-wasabi" },
+      en: { name: "Baked Hiddenfjord salmon", desc: "Foraged wild broccoli, saffron cauliflower, baby carrots, nasturtium, yuzu sauce, broccoli-wasabi purée" },
+      sk: { name: "Pečený losos Hiddenfjord", desc: "Divá brokolica, karfiol so šafranom, karotka, kapucínka, yuzu omáčka, brokolicová kaša s wasabi" } },
+    { id: 'm5', price: 24.00, weight: "350 g",
+      fr: { name: "Suprême de poulet au provolone", desc: "Carottes, asperges, sauce au fromage, pousses de tournesol, riz jasmin" },
+      en: { name: "Chicken breast supreme filled with provolone", desc: "Carrots, asparagus, cheese sauce, sunflower sprouts, jasmine rice" },
+      sk: { name: "Kuracie prsia supreme plnené syrom provolone", desc: "Mrkva, špargľa, syrová omáčka, slnečnicové výhonky, jazmínová ryža" } },
+    { id: 'm6', price: 29.00, weight: "350 g",
+      fr: { name: "Cuisse de lapin confite", desc: "Tomates cerises, crème fraîche, oignons frits, mizuna, gnocchis aux épinards" },
+      en: { name: "Rabbit leg confit", desc: "Cherry tomatoes, crème fraîche, fried onions, mizuna, spinach gnocchi" },
+      sk: { name: "Konfitované králičie stehno", desc: "Cherry paradajky, crème fraîche, fritovaná cibuľa, mizuna, špenátové halušky" } },
+    { id: 'm7', slovak: true, price: 27.50, weight: "350 g",
+      fr: { name: "Escalope de veau panée au panko", desc: "Jeunes pousses, concombre, purée de panais" },
+      en: { name: "Panko-crusted veal sirloin schnitzel", desc: "Mixed baby leaves, cucumber, parsnip purée" },
+      sk: { name: "Teľací rezeň v panko strúhanke", desc: "Zmes baby listov, uhorka, paštrnáková kaša" } },
+    { id: 'm8', slovak: true, price: 36.00, weight: "350 g",
+      fr: { name: "Longe de daim sous-vide", desc: "Confit d'oignons aux mûres, sauce aux pousses d'épicéa, purée petits pois-menthe" },
+      en: { name: "Fallow deer loin sous-vide", desc: "Onion jam with mulberries, spruce shoot sauce, pea-mint purée" },
+      sk: { name: "Sviečková z daniela sous-vide", desc: "Cibuľový džem s morušami, omáčka zo smrekových výhonkov, hráškovo-mätová kaša" } },
+    { id: 'm9', price: 23.00, weight: "400 g",
+      fr: { name: "Burger Houdini", desc: "Bœuf maturé haché, bacon, cornichons, chutney d'oignons, mozzarella, salade, tomate, sauce maison, frites de patate douce" },
+      en: { name: "Houdini burger", desc: "Dry-aged minced beef, crispy bacon, pickles, onion chutney, mozzarella, lettuce, tomato, homemade dressing, sweet potato fries" },
+      sk: { name: "Houdini burger", desc: "Vyzreté mleté hovädzie mäso, chrumkavá slanina, nakladané uhorky, cibuľové čatní, mozzarella, listový šalát, paradajky, domáci dresing, batátové hranolky" } },
+    { id: 'm10', price: 48.00, weight: "350 g",
+      fr: { name: "Pavé de bœuf Black Angus", desc: "Légumes grillés, sauce au cognac, gratin de pommes de terre au cheddar" },
+      en: { name: "Black Angus beef steak", desc: "Grilled vegetables, brandy sauce, cheddar potato gratin" },
+      sk: { name: "Steak z hovädzej sviečkovice Black Angus", desc: "Grilovaná zelenina, omáčka z brandy, gratinované zemiaky s čedarom" } }
+  ],
+  dessert: [
+    { id: 'd1', price: 9.50, weight: "100 g",
+      fr: { name: "Cannoli à la pistache", desc: "Mascarpone, framboises, sauce framboise, pistaches grillées, poudre de framboise" },
+      en: { name: "Pistachio cannoli", desc: "Mascarpone, raspberries, raspberry sauce, roasted pistachios, raspberry powder" },
+      sk: { name: "Pistáciové cannoli", desc: "Mascarpone, maliny, malinová omáčka, pražené pistácie, malinový prach" } },
+    { id: 'd2', price: 9.50, weight: "100 g",
+      fr: { name: "Tartelette à l'abricot", desc: "Mousse de ricotta, coulis abricot-argousier, chocolat à l'orange" },
+      en: { name: "Apricot tartlet", desc: "Ricotta mousse, apricot-sea buckthorn coulis, orange chocolate" },
+      sk: { name: "Marhuľová tartaletka", desc: "Ricottová pena, marhuľovo-rakytníkové coulis, pomarančová čokoláda" } },
+    { id: 'd3', slovak: true, price: 9.50, weight: "100 g",
+      fr: { name: "Knödel aux fraises", desc: "Souchet, fromage blanc, amandes, vin de paille, miel d'acacia" },
+      en: { name: "Strawberry dumplings", desc: "Tiger nuts, quark, almonds, straw wine, acacia honey" },
+      sk: { name: "Jahodové knedličky", desc: "Tigrie orechy, tvaroh, mandle, slamové víno, akáciový med" } },
+    { id: 'd4', price: 7.50, weight: "150 g",
+      fr: { name: "Assiette de fruits frais", desc: "Fruits frais découpés" },
+      en: { name: "Fruit platter", desc: "Fresh sliced fruit" },
+      sk: { name: "Ovocný tanier", desc: "Čerstvé krájané ovocie" } }
+  ]
+};
+
+// ============================================================================
+// I18N — interface translations
+// ============================================================================
+const I18N = {
+  fr: {
+    eyebrow: "Houdini · Wine & Dine",
+    title_main: "Menu",
+    title_em: "à la carte",
+    sub: "EVG Christophe",
+    location: "Bratislava",
+    legend_strong: "Spécialité locale",
+    legend_text: "plat typique de la cuisine slovaque",
+    name_label: "Ton prénom",
+    name_placeholder: "Entre ton prénom…",
+    name_required: "Entre d'abord ton prénom",
+    name_edit: (n) => `Modification de la commande de ${n}`,
+    cat_starter: "Entrées",
+    cat_main: "Plats",
+    cat_dessert: "Desserts",
+    slovak_tag: "Spécialité locale",
+    validate: "Valider ma commande",
+    validate_update: "Mettre à jour",
+    sending: "Envoi…",
+    thanks: (n) => `Merci ${n} ! ✓`,
+    updated: (n) => `Commande de ${n} mise à jour`,
+    err_send: "Erreur d'envoi, réessaie",
+    err_del: "Erreur de suppression",
+    deleted: "Supprimé",
+    confirm_del: (n) => `Supprimer la commande de ${n} ?`,
+    synth_title_main: "Qui a",
+    synth_title_em: "commandé",
+    synth_unit_1: "personne",
+    synth_unit_n: "personnes",
+    synth_empty_1: "Personne n'a encore commandé.",
+    synth_empty_2: "Premier ! 👋",
+    plates: (n) => `${n} plat${n>1?'s':''}`,
+    recap_title_main: "Récap",
+    recap_title_em: "commande",
+    recap_empty: "Aucune commande encore.",
+    total: "Total estimé",
+    copy_btn: "Copier pour WhatsApp",
+    copied: "Copié ! Colle dans WhatsApp",
+    reset_all: "Tout réinitialiser",
+    confirm_reset: "⚠️ Effacer TOUTES les commandes de TOUT LE MONDE ? Cette action est définitive et impactera tous les invités.",
+    all_cleared: "Tout effacé",
+    err_reset: "Erreur lors de l'effacement",
+    edit: "Modifier", del: "Supprimer",
+    sync_ok: "Synchronisé en temps réel",
+    sync_connect: "Connexion…",
+    sync_err: "Erreur de connexion",
+    server_title: "Synthèse pour le serveur",
+    server_subtitle: "Vue détaillée",
+    copy_server: "Copier",
+    copied_server: "Copié !",
+    txt_server_title: "🍽️ COMMANDE — HOUDINI",
+    txt_title: "🍽️ MENU HOUDINI — EVG Christophe",
+    txt_total: "Total estimé",
+    persons_1: "personne", persons_n: "personnes",
+    footer_date: "Houdini Bratislava · 21–25 mai 2026"
+  },
+  en: {
+    eyebrow: "Houdini · Wine & Dine",
+    title_main: "Menu",
+    title_em: "à la carte",
+    sub: "Christophe's Bachelor Party",
+    location: "Bratislava",
+    legend_strong: "Local specialty",
+    legend_text: "traditional Slovak dish",
+    name_label: "Your first name",
+    name_placeholder: "Enter your name…",
+    name_required: "Enter your name first",
+    name_edit: (n) => `Editing ${n}'s order`,
+    cat_starter: "Starters",
+    cat_main: "Main courses",
+    cat_dessert: "Desserts",
+    slovak_tag: "Local specialty",
+    validate: "Confirm my order",
+    validate_update: "Update order",
+    sending: "Sending…",
+    thanks: (n) => `Thanks ${n}! ✓`,
+    updated: (n) => `${n}'s order updated`,
+    err_send: "Send error, try again",
+    err_del: "Delete error",
+    deleted: "Deleted",
+    confirm_del: (n) => `Delete ${n}'s order?`,
+    synth_title_main: "Who",
+    synth_title_em: "ordered",
+    synth_unit_1: "person",
+    synth_unit_n: "people",
+    synth_empty_1: "No orders yet.",
+    synth_empty_2: "Be first! 👋",
+    plates: (n) => `${n} dish${n>1?'es':''}`,
+    recap_title_main: "Order",
+    recap_title_em: "summary",
+    recap_empty: "No orders yet.",
+    total: "Estimated total",
+    copy_btn: "Copy for WhatsApp",
+    copied: "Copied! Paste into WhatsApp",
+    reset_all: "Reset everything",
+    confirm_reset: "⚠️ Erase ALL orders from EVERYONE? This is permanent and affects every guest.",
+    all_cleared: "All cleared",
+    err_reset: "Error while clearing",
+    edit: "Edit", del: "Delete",
+    sync_ok: "Synced in real time",
+    sync_connect: "Connecting…",
+    sync_err: "Connection error",
+    server_title: "Summary for the server",
+    server_subtitle: "Detailed view",
+    copy_server: "Copy",
+    copied_server: "Copied!",
+    txt_server_title: "🍽️ ORDER — HOUDINI",
+    txt_title: "🍽️ HOUDINI MENU — Christophe's Bachelor Party",
+    txt_total: "Estimated total",
+    persons_1: "person", persons_n: "people",
+    footer_date: "Houdini Bratislava · May 21–25, 2026"
+  },
+  sk: {
+    eyebrow: "Houdini · Wine & Dine",
+    title_main: "Menu",
+    title_em: "à la carte",
+    sub: "Rozlúčka so slobodou — Christophe",
+    location: "Bratislava",
+    legend_strong: "Lokálna špecialita",
+    legend_text: "typické slovenské jedlo",
+    name_label: "Tvoje meno",
+    name_placeholder: "Zadaj svoje meno…",
+    name_required: "Najprv zadaj svoje meno",
+    name_edit: (n) => `Úprava objednávky ${n}`,
+    cat_starter: "Predjedlá, šaláty, polievky",
+    cat_main: "Hlavné jedlá",
+    cat_dessert: "Dezerty",
+    slovak_tag: "Lokálna špecialita",
+    validate: "Potvrdiť objednávku",
+    validate_update: "Aktualizovať",
+    sending: "Odosielam…",
+    thanks: (n) => `Ďakujeme ${n}! ✓`,
+    updated: (n) => `Objednávka ${n} aktualizovaná`,
+    err_send: "Chyba odosielania, skús znova",
+    err_del: "Chyba pri mazaní",
+    deleted: "Vymazané",
+    confirm_del: (n) => `Vymazať objednávku ${n}?`,
+    synth_title_main: "Kto si",
+    synth_title_em: "objednal",
+    synth_unit_1: "osoba",
+    synth_unit_n: "osôb",
+    synth_empty_1: "Zatiaľ žiadne objednávky.",
+    synth_empty_2: "Buď prvý! 👋",
+    plates: (n) => `${n} jed${n>1?'lá':'lo'}`,
+    recap_title_main: "Súhrn",
+    recap_title_em: "objednávok",
+    recap_empty: "Zatiaľ žiadne objednávky.",
+    total: "Odhadovaný súčet",
+    copy_btn: "Kopírovať pre WhatsApp",
+    copied: "Skopírované! Vlož do WhatsAppu",
+    reset_all: "Vymazať všetko",
+    confirm_reset: "⚠️ Vymazať VŠETKY objednávky VŠETKÝCH? Akcia je nezvratná a ovplyvní všetkých hostí.",
+    all_cleared: "Všetko vymazané",
+    err_reset: "Chyba pri mazaní",
+    edit: "Upraviť", del: "Vymazať",
+    sync_ok: "Synchronizované v reálnom čase",
+    sync_connect: "Pripájanie…",
+    sync_err: "Chyba pripojenia",
+    server_title: "Súhrn pre čašníka",
+    server_subtitle: "Podrobný prehľad",
+    copy_server: "Kopírovať",
+    copied_server: "Skopírované!",
+    txt_server_title: "🍽️ OBJEDNÁVKA — HOUDINI",
+    txt_title: "🍽️ MENU HOUDINI — Rozlúčka Christophe",
+    txt_total: "Odhadovaný súčet",
+    persons_1: "osoba", persons_n: "osôb",
+    footer_date: "Houdini Bratislava · 21.–25. mája 2026"
+  }
+};
+
+let lang = (localStorage.getItem('houdini-evg-lang') || 'fr');
+if (!I18N[lang]) lang = 'fr';
+function t() { return I18N[lang]; }
+
+const CAT_LABELS_KEY = { starter: 'cat_starter', main: 'cat_main', dessert: 'cat_dessert' };
+const STORAGE_KEY = "houdini-evg-v3-current"; // ne stocke plus que l'état d'édition local
+
+let state = {
+  current: { name: "", picks: [] },
+  orders: []  // chargé depuis Firestore via onSnapshot
+};
+
+function loadCurrent() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && parsed.current) state.current = parsed.current;
+    }
+  } catch (e) {}
+}
+function saveCurrent() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify({ current: state.current })); } catch (e) {}
+}
+// Alias pour conserver les anciens appels save() dans le code
+function save() { saveCurrent(); }
+
+function slugify(s) {
+  return s.trim().toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "anon";
+}
+
+function findDish(id) {
+  for (const cat of ['starter', 'main', 'dessert']) {
+    const d = MENU[cat].find(d => d.id === id);
+    if (d) return { ...d, cat, name: d[lang].name, desc: d[lang].desc };
+  }
+  return null;
+}
+
+function existingOrder(name) {
+  const n = name.trim().toLowerCase();
+  if (!n) return null;
+  return state.orders.find(o => o.name.trim().toLowerCase() === n);
+}
+
+const menuRoot = document.getElementById('menuRoot');
+
+function renderMenu() {
+  let html = '';
+  ['starter', 'main', 'dessert'].forEach(cat => {
+    html += `<div class="cat-title">${t()[CAT_LABELS_KEY[cat]]}</div>`;
+    // Tri : spécialités locales d'abord
+    const items = [...MENU[cat]].sort((a, b) => (b.slovak ? 1 : 0) - (a.slovak ? 1 : 0));
+    items.forEach(d => {
+      const selected = state.current.picks.includes(d.id);
+      const tr = d[lang];
+      html += `
+        <div class="dish ${selected ? 'selected' : ''}" data-id="${d.id}">
+          <div class="dish-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="dish-content">
+            <div class="dish-head">
+              <div class="dish-name">${d.slovak ? '<span class="dish-slovak-flag" title="' + t().slovak_tag + '"></span>' : ''}${tr.name}</div>
+              <div class="dish-price">${fmtPrice(d.price)}</div>
+            </div>
+            ${d.slovak ? `<div class="dish-slovak-tag">${t().slovak_tag}</div>` : ''}
+            <div class="dish-desc">${tr.desc}</div>
+            <div class="dish-meta">${d.weight}</div>
+          </div>
+        </div>`;
+    });
+  });
+  menuRoot.innerHTML = html;
+  menuRoot.querySelectorAll('.dish').forEach(el => {
+    el.addEventListener('click', () => toggleDish(el.dataset.id));
+  });
+}
+
+function toggleDish(id) {
+  // Blocage si pas de prénom
+  if (!state.current.name.trim()) {
+    flashNameRequired();
+    return;
+  }
+  const i = state.current.picks.indexOf(id);
+  if (i >= 0) state.current.picks.splice(i, 1);
+  else state.current.picks.push(id);
+  save();
+  updateMenuUI();
+  updateValidateBtn();
+}
+
+function flashNameRequired() {
+  const block = document.querySelector('.name-block');
+  nameHint.textContent = t().name_required;
+  nameHint.className = 'name-hint error';
+  block.classList.remove('pulse');
+  void block.offsetWidth;
+  block.classList.add('pulse');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => nameInput.focus(), 350);
+}
+
+function updateMenuUI() {
+  menuRoot.querySelectorAll('.dish').forEach(el => {
+    el.classList.toggle('selected', state.current.picks.includes(el.dataset.id));
+  });
+}
+
+const nameInput = document.getElementById('nameInput');
+const nameHint = document.getElementById('nameHint');
+const validateBtn = document.getElementById('validateBtn');
+const validateLabel = document.getElementById('validateLabel');
+const validateCount = document.getElementById('validateCount');
+
+nameInput.addEventListener('input', () => {
+  state.current.name = nameInput.value;
+  const existing = existingOrder(nameInput.value);
+  if (existing) {
+    state.current.picks = [...existing.picks];
+    nameHint.textContent = t().name_edit(existing.name);
+    nameHint.className = 'name-hint edit';
+  } else {
+    nameHint.textContent = '';
+    nameHint.className = 'name-hint';
+  }
+  save();
+  updateMenuUI();
+  updateMenuLock();
+  updateValidateBtn();
+});
+
+function updateMenuLock() {
+  const hasName = state.current.name.trim().length > 0;
+  menuRoot.classList.toggle('menu-locked', !hasName);
+}
+
+function updateValidateBtn() {
+  const hasName = state.current.name.trim().length > 0;
+  const count = state.current.picks.length;
+  const isEdit = !!existingOrder(state.current.name);
+  validateBtn.disabled = !hasName || count === 0;
+  validateLabel.textContent = isEdit ? t().validate_update : t().validate;
+  if (count > 0) {
+    validateCount.style.display = '';
+    validateCount.textContent = count;
+  } else {
+    validateCount.style.display = 'none';
+  }
+}
+
+validateBtn.addEventListener('click', async () => {
+  if (validateBtn.disabled) return;
+  const name = state.current.name.trim();
+  const picks = [...state.current.picks];
+  const existing = existingOrder(name);
+  const slug = existing ? existing.id : slugify(name);
+  validateBtn.disabled = true;
+  validateLabel.textContent = t().sending;
+  try {
+    await setDoc(doc(db, COLLECTION, slug), {
+      name, picks, at: Date.now()
+    });
+    showToast(existing ? t().updated(name) : t().thanks(name));
+  } catch (e) {
+    console.error(e);
+    showToast(t().err_send);
+    validateBtn.disabled = false;
+    updateValidateBtn();
+    return;
+  }
+  state.current = { name: "", picks: [] };
+  nameInput.value = "";
+  nameHint.textContent = "";
+  nameHint.className = 'name-hint';
+  save();
+  updateMenuUI();
+  updateMenuLock();
+  updateValidateBtn();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  setTimeout(() => nameInput.focus(), 400);
+});
+
+const synthList = document.getElementById('synthList');
+const synthCount = document.getElementById('synthCount');
+const synthCounter = document.getElementById('synthCounter');
+
+function renderSynthese() {
+  const n = state.orders.length;
+  synthCount.textContent = n + ' ' + (n <= 1 ? t().synth_unit_1 : t().synth_unit_n);
+  synthCounter.classList.toggle('zero', n === 0);
+
+  if (n === 0) {
+    synthList.innerHTML = `<div class="synth-empty">${t().synth_empty_1}<br>${t().synth_empty_2}</div>`;
+    return;
+  }
+  const sorted = [...state.orders].sort((a, b) => a.at - b.at);
+  synthList.innerHTML = sorted.map(o => {
+    const total = o.picks.reduce((sum, id) => sum + (findDish(id)?.price || 0), 0);
+    const tags = o.picks.map(id => {
+      const d = findDish(id);
+      if (!d) return '';
+      const catClass = `cat-${d.cat[0]}`;
+      return `<span class="synth-card-tag ${catClass}">${d.name}</span>`;
+    }).join('');
+    return `
+      <div class="synth-card fade-up" data-id="${o.id}">
+        <div class="synth-card-head">
+          <div class="synth-card-name"><span class="synth-card-check">✓</span> ${escapeHtml(o.name)}</div>
+          <div class="synth-card-actions">
+            <button data-edit="${o.id}" title="${t().edit}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            </button>
+            <button data-del="${o.id}" title="${t().del}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="synth-card-list">${tags}</div>
+        <div class="synth-card-total">${t().plates(o.picks.length)} · ${fmtPrice(total)}</div>
+      </div>
+    `;
+  }).join('');
+
+  synthList.querySelectorAll('[data-edit]').forEach(b => {
+    b.addEventListener('click', () => {
+      const order = state.orders.find(o => o.id === b.dataset.edit);
+      if (!order) return;
+      nameInput.value = order.name;
+      nameInput.dispatchEvent(new Event('input'));
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+  synthList.querySelectorAll('[data-del]').forEach(b => {
+    b.addEventListener('click', async () => {
+      const order = state.orders.find(o => o.id === b.dataset.del);
+      if (!order) return;
+      if (confirm(t().confirm_del(order.name))) {
+        try {
+          await deleteDoc(doc(db, COLLECTION, order.id));
+          showToast(t().deleted);
+        } catch (e) {
+          console.error(e);
+          showToast(t().err_del);
+        }
+      }
+    });
+  });
+}
+
+const recapSheet = document.getElementById('recapSheet');
+const recapBackdrop = document.getElementById('recapBackdrop');
+const recapBody = document.getElementById('recapBody');
+
+function openRecap() {
+  renderRecap();
+  document.body.style.overflow = 'hidden';
+  recapBackdrop.classList.add('open');
+  requestAnimationFrame(() => recapSheet.classList.add('open'));
+}
+function closeRecap() {
+  document.body.style.overflow = '';
+  recapSheet.classList.remove('open');
+  recapBackdrop.classList.remove('open');
+}
+recapBackdrop.addEventListener('click', closeRecap);
+document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeRecap));
+
+function renderRecap() {
+  if (state.orders.length === 0) {
+    recapBody.innerHTML = `<div class="recap-empty">${t().recap_empty}</div>`;
+    return;
+  }
+
+  // Construire les regroupements une seule fois
+  const byCategory = { starter: new Map(), main: new Map(), dessert: new Map() };
+  state.orders.forEach(o => {
+    o.picks.forEach(id => {
+      const d = findDish(id);
+      if (!d) return;
+      const map = byCategory[d.cat];
+      if (!map.has(id)) map.set(id, []);
+      map.get(id).push(o.name);
+    });
+  });
+
+  let total = 0;
+  let html = '';
+
+  // === SECTION 1 — VUE SERVEUR (en haut, format compact) ===
+  html += `<div class="server-section">`;
+  html += `<div class="server-section-head">
+    <div class="server-section-title">${t().server_title}</div>
+    <button class="server-copy-btn" id="copyServerBtn">${t().copy_server}</button>
+  </div>`;
+  ['starter', 'main', 'dessert'].forEach(cat => {
+    const map = byCategory[cat];
+    if (map.size === 0) return;
+    html += `<div class="server-cat">${t()[CAT_LABELS_KEY[cat]]}</div>`;
+    Array.from(map.entries()).forEach(([dishId, names]) => {
+      const dish = findDish(dishId);
+      html += `
+        <div class="server-row">
+          <div class="server-dish">${dish.name}</div>
+          <div class="server-qty">×${names.length}</div>
+        </div>`;
+    });
+  });
+  html += `</div>`;
+
+  // === SECTION 2 — VUE DÉTAILLÉE (qui a pris quoi, prix) ===
+  html += `<div class="recap-section-divider">${t().server_subtitle}</div>`;
+  ['starter', 'main', 'dessert'].forEach(cat => {
+    const map = byCategory[cat];
+    if (map.size === 0) return;
+    html += `<div class="recap-cat">${t()[CAT_LABELS_KEY[cat]]}</div>`;
+    Array.from(map.entries()).forEach(([dishId, names]) => {
+      const dish = findDish(dishId);
+      const subTotal = dish.price * names.length;
+      total += subTotal;
+      html += `
+        <div class="recap-item">
+          <div class="recap-dish-row">
+            <div class="recap-dish-name">${dish.name}</div>
+            <div class="recap-qty">×${names.length}</div>
+          </div>
+          <div class="recap-guests">${names.map(escapeHtml).join(' · ')}</div>
+        </div>`;
+    });
+  });
+  html += `
+    <div class="recap-total">
+      <div class="recap-total-label">${t().total}</div>
+      <div class="recap-total-value">${fmtPrice(total)}</div>
+    </div>
+    <button class="btn-primary" id="copyTextBtn" style="width:100%">${t().copy_btn}</button>
+    <div class="danger-zone">
+      <button class="danger-btn" id="resetAllBtn">${t().reset_all}</button>
+    </div>
+  `;
+  recapBody.innerHTML = html;
+  document.getElementById('copyTextBtn').addEventListener('click', copyRecap);
+  document.getElementById('copyServerBtn').addEventListener('click', copyServerRecap);
+  document.getElementById('resetAllBtn').addEventListener('click', async () => {
+    if (!confirm(t().confirm_reset)) return;
+    try {
+      const snap = await getDocs(ordersCol);
+      const batch = writeBatch(db);
+      snap.forEach(d => batch.delete(d.ref));
+      await batch.commit();
+      state.current = { name: "", picks: [] };
+      nameInput.value = "";
+      save();
+      updateMenuUI();
+      updateMenuLock();
+      updateValidateBtn();
+      closeRecap();
+      showToast(t().all_cleared);
+    } catch (e) {
+      console.error(e);
+      showToast(t().err_reset);
+    }
+  });
+}
+
+function buildServerText() {
+  const lines = [];
+  lines.push(t().txt_server_title);
+  lines.push("");
+  ['starter', 'main', 'dessert'].forEach(cat => {
+    const dishMap = new Map();
+    state.orders.forEach(o => {
+      o.picks.forEach(id => {
+        const d = findDish(id);
+        if (d && d.cat === cat) {
+          if (!dishMap.has(id)) dishMap.set(id, 0);
+          dishMap.set(id, dishMap.get(id) + 1);
+        }
+      });
+    });
+    if (dishMap.size === 0) return;
+    lines.push(`▸ ${t()[CAT_LABELS_KEY[cat]].toUpperCase()}`);
+    Array.from(dishMap.entries()).forEach(([dishId, qty]) => {
+      const dish = findDish(dishId);
+      lines.push(`   ${dish.name} ×${qty}`);
+    });
+    lines.push("");
+  });
+  return lines.join('\n').trim();
+}
+
+function copyServerRecap() {
+  const text = buildServerText();
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(t().copied_server);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); showToast(t().copied_server); } catch(e) {}
+    document.body.removeChild(ta);
+  });
+}
+
+function buildTextRecap() {
+  const lines = [];
+  lines.push(t().txt_title);
+  lines.push("");
+  let total = 0, totalCount = 0;
+  ['starter', 'main', 'dessert'].forEach(cat => {
+    const dishMap = new Map();
+    state.orders.forEach(o => {
+      o.picks.forEach(id => {
+        const d = findDish(id);
+        if (d && d.cat === cat) {
+          if (!dishMap.has(id)) dishMap.set(id, []);
+          dishMap.get(id).push(o.name);
+        }
+      });
+    });
+    if (dishMap.size === 0) return;
+    lines.push(`▸ ${t()[CAT_LABELS_KEY[cat]].toUpperCase()}`);
+    Array.from(dishMap.entries()).forEach(([dishId, names]) => {
+      const dish = findDish(dishId);
+      const subTotal = dish.price * names.length;
+      total += subTotal;
+      totalCount += names.length;
+      lines.push(`• ${dish.name} ×${names.length}`);
+      lines.push(`   → ${names.join(', ')}`);
+      lines.push(`   ${fmtPrice(dish.price)} × ${names.length} = ${fmtPrice(subTotal)}`);
+    });
+    lines.push("");
+  });
+  lines.push(`💰 ${t().txt_total} : ${fmtPrice(total)}`);
+  const personLabel = state.orders.length <= 1 ? t().persons_1 : t().persons_n;
+  lines.push(`${t().plates(totalCount)} · ${state.orders.length} ${personLabel}`);
+  return lines.join('\n');
+}
+
+function copyRecap() {
+  const text = buildTextRecap();
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(t().copied);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); showToast(t().copied); } catch(e) {}
+    document.body.removeChild(ta);
+  });
+}
+
+document.getElementById('recapBtn').addEventListener('click', openRecap);
+
+function fmtPrice(p) { return p.toFixed(2).replace('.', ',') + ' €'; }
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+let toastTimer;
+function showToast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2200);
+}
+
+// ============================================================================
+// LANGUAGE SWITCHER
+// ============================================================================
+function applyLanguage() {
+  const tt = t();
+  document.documentElement.lang = lang;
+  // Header
+  document.getElementById('t-eyebrow').textContent = tt.eyebrow;
+  document.getElementById('t-title-main').textContent = tt.title_main;
+  document.getElementById('t-title-em').textContent = tt.title_em;
+  document.getElementById('t-sub').textContent = tt.sub;
+  document.getElementById('t-location').textContent = tt.location;
+  // Legend
+  document.getElementById('t-legend-strong').textContent = tt.legend_strong;
+  document.getElementById('t-legend-text').textContent = tt.legend_text;
+  // Name block
+  document.getElementById('t-name-label').textContent = tt.name_label;
+  nameInput.placeholder = tt.name_placeholder;
+  // Synth
+  document.getElementById('t-synth-main').textContent = tt.synth_title_main;
+  document.getElementById('t-synth-em').textContent = tt.synth_title_em;
+  // Recap title
+  document.getElementById('t-recap-main').textContent = tt.recap_title_main;
+  document.getElementById('t-recap-em').textContent = tt.recap_title_em;
+  // Footer
+  document.getElementById('t-footer').innerHTML = tt.footer_date.replace(' · ', '<span class="sep">◆</span>');
+  // Active button
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  // Re-render content that contains text from i18n
+  renderMenu();
+  updateMenuLock();
+  updateValidateBtn();
+  renderSynthese();
+  // If a hint message is shown, refresh it
+  const existing = existingOrder(state.current.name);
+  if (existing) {
+    document.getElementById('nameHint').textContent = tt.name_edit(existing.name);
+  }
+}
+
+document.querySelectorAll('.lang-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    lang = btn.dataset.lang;
+    localStorage.setItem('houdini-evg-lang', lang);
+    applyLanguage();
+  });
+});
+
+// ============================================================================
+// FIRESTORE LISTENER — sync temps réel
+// ============================================================================
+const syncStatus = document.getElementById('syncStatus');
+const syncLabel = document.getElementById('syncLabel');
+
+function setSyncStatus(state, label) {
+  syncStatus.classList.remove('ok', 'err');
+  if (state) syncStatus.classList.add(state);
+  syncLabel.textContent = label;
+}
+
+onSnapshot(ordersCol,
+  (snapshot) => {
+    state.orders = snapshot.docs.map(d => ({
+      id: d.id,
+      ...d.data()
+    }));
+    setSyncStatus('ok', t().sync_ok);
+    renderSynthese();
+    if (state.current.name && existingOrder(state.current.name)) {
+      nameInput.dispatchEvent(new Event('input'));
+    }
+  },
+  (err) => {
+    console.error("Firestore error:", err);
+    setSyncStatus('err', t().sync_err);
+  }
+);
+
+loadCurrent();
+nameInput.value = state.current.name || '';
+applyLanguage();
+setSyncStatus(null, t().sync_connect);
+if (state.current.name) nameInput.dispatchEvent(new Event('input'));
+</script>
+</body>
+</html>
